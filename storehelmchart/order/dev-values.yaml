@@ -24,7 +24,7 @@ orderService:
   - name: http
     port: 3000
     targetPort: 3000
-  replicas: 1
+  replicas: 2
   type: ClusterIP
   waitForRabbitmq:
     image:
