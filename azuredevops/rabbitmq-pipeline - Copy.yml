@@ -4,11 +4,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: k8s-common
+  - group: 'k8s-dev'
   - name: helmRepoName
     value: 'helm'
   - name: chartName 
-    value: 'config'
+    value: 'rabbitmq'
   - name: helmChartPath 
     value: './storehelmchart/'
   - name: helmChartVersion
@@ -32,15 +32,13 @@ stages:
             acrName: $(acrName)
             serviceConnection: $(serviceConnection)
 
-  - stage: Dev_Deploy
-    displayName: Deploy to AKS Dev
+  - stage: Deploy
+    displayName: Deploy to AKS
     dependsOn: HelmPackagePush
     jobs:
     - job: Deploy
       pool:
         vmImage: 'ubuntu-latest'
-      variables:
-      - group: 'k8s-dev'
       steps:
         - template: appTemplates/deploy.yml
           parameters:
@@ -51,27 +49,4 @@ stages:
             aksCluster: $(aksCluster)
             aksResourceGroup: $(aksResourceGroup) 
             serviceConnection: $(serviceConnection)
-            environment: $(environment)
-            namespace: $(namespace)
-
-  - stage: Prod_Deploy
-    displayName: Deploy to AKS Prod
-    dependsOn: Dev_Deploy
-    jobs:
-    - job: Deploy
-      pool:
-        vmImage: 'ubuntu-latest'
-      variables:
-      - group: 'k8s-prod'
-      steps:
-        - template: appTemplates/deploy.yml
-          parameters:
-            chartName: $(chartName)
-            helmChartVersion: $(helmChartVersion) 
-            helmRepoName: $(helmRepoName)
-            acrName: $(acrName)
-            aksCluster: $(aksCluster)
-            aksResourceGroup: $(aksResourceGroup) 
-            serviceConnection: $(serviceConnection)
-            environment: $(environment)
             namespace: $(namespace)
