@@ -55,7 +55,9 @@ steps:
       namespace: ${{parameters.namespace}}
       command: upgrade
       chartType: FilePath
-      chartPath: './${{parameters.chartName}}-${{parameters.helmChartVersion}}.tgz'
+      chartPath: './${{parameters.chartName}}-${{parameters.helmChartVersion}}.tgz' 
+      overrideValues: |
+        image.tag=${{parameters.helmChartVersion}}
       valueFile: './storehelmchart/${{parameters.chartName}}/$(environment)-values.yaml'
       releaseName: ${{parameters.chartName}}
       install: true
