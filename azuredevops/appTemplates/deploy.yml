@@ -11,9 +11,11 @@ parameters:
   type: string
 - name: "aksResourceGroup"
   type: string
+- name: "serviceConnection"
+  type: string
 - name: "namespace"
   type: string
-- name: "serviceConnection"
+- name: "environment"
   type: string
 
 steps:
@@ -54,6 +56,7 @@ steps:
       command: upgrade
       chartType: FilePath
       chartPath: './${{parameters.chartName}}-${{parameters.helmChartVersion}}.tgz'
+      valueFile: '$(environment)-values.yaml'
       releaseName: ${{parameters.chartName}}
       install: true
       waitForExecution: true
