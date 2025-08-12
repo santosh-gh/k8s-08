@@ -56,7 +56,7 @@ steps:
       command: upgrade
       chartType: FilePath
       chartPath: './${{parameters.chartName}}-${{parameters.helmChartVersion}}.tgz'
-      valueFile: '$(environment)-values.yaml'
+      valueFile: './storehelmchart/${{parameters.chartName}}/$(environment)-values.yaml'
       releaseName: ${{parameters.chartName}}
       install: true
       waitForExecution: true
