@@ -49,7 +49,7 @@ stages:
             acrName: $(acrName)
             serviceConnection: $(serviceConnection)
 
-  - stage: Dev-Deploy
+  - stage: Dev_Deploy
     displayName: Deploy to AKS
     dependsOn: HelmPackagePush
     jobs:
@@ -71,7 +71,7 @@ stages:
             environment: $(environment)
             namespace: $(namespace)
 
-  - stage: Prod-Deploy
+  - stage: Prod_Deploy
     displayName: Deploy to AKS
     dependsOn: HelmPackagePush
     jobs:
