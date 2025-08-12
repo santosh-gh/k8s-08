@@ -73,7 +73,7 @@ stages:
 
   - stage: Prod_Deploy
     displayName: Deploy to AKS
-    dependsOn: HelmPackagePush
+    dependsOn: Dev_Deploy
     jobs:
     - job: Deploy
       pool:
