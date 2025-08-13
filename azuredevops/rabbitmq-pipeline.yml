@@ -42,17 +42,17 @@ stages:
     jobs:
       - template: appTemplates/deploy.yml
         parameters:
-            chartName: $(chartName)
-            helmChartVersion: $(helmChartVersion) 
-            helmRepoName: $(helmRepoName)
-            acrName: $(acrName)
-            aksCluster: $(aksCluster)
-            aksResourceGroup: $(aksResourceGroup) 
-            serviceConnection: $(serviceConnection)
-            environment: $(environment)
-            namespace: $(namespace)
-            helmChartPath: $(helmChartPath)
-            imageTag: $(imageTag)
+          chartName: $(chartName)
+          helmChartVersion: $(helmChartVersion) 
+          helmRepoName: $(helmRepoName)
+          acrName: $(acrName)
+          aksCluster: $(aksCluster)
+          aksResourceGroup: $(aksResourceGroup) 
+          serviceConnection: $(serviceConnection)
+          environment: $(environment)
+          namespace: $(namespace)
+          helmChartPath: $(helmChartPath)
+          imageTag: $(imageTag)
 
   - stage: Prod_Deploy
     displayName: Deploy to AKS Prod
@@ -62,14 +62,14 @@ stages:
     jobs:
       - template: appTemplates/deploy.yml
         parameters:
-            chartName: $(chartName)
-            helmChartVersion: $(helmChartVersion) 
-            helmRepoName: $(helmRepoName)
-            acrName: $(acrName)
-            aksCluster: $(aksCluster)
-            aksResourceGroup: $(aksResourceGroup) 
-            serviceConnection: $(serviceConnection)
-            environment: $(environment)
-            namespace: $(namespace)
-            helmChartPath: $(helmChartPath)
-            imageTag: $(imageTag)
+          chartName: $(chartName)
+          helmChartVersion: $(helmChartVersion) 
+          helmRepoName: $(helmRepoName)
+          acrName: $(acrName)
+          aksCluster: $(aksCluster)
+          aksResourceGroup: $(aksResourceGroup) 
+          serviceConnection: $(serviceConnection)
+          environment: $(environment)
+          namespace: $(namespace)
+          helmChartPath: $(helmChartPath)
+          imageTag: $(imageTag)
