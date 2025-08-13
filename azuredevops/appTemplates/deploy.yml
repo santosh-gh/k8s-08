@@ -15,7 +15,7 @@ parameters:
   type: string
 - name: "namespace"
   type: string
-- name: "environment"
+- name: "environments"
   type: string
 - name: "helmChartPath"
   type: string
@@ -28,7 +28,7 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     displayName: "Deploy Resources to AKS"
-    environment: ${{parameters.environment}}
+    environment: ${{parameters.environments}}
     strategy:
       runOnce:
         deploy:
