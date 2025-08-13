@@ -15,7 +15,7 @@ parameters:
   type: string
 - name: "namespace"
   type: string
-- name: "environments"
+- name: "environment"
   type: string
 - name: "helmChartPath"
   type: string
@@ -28,7 +28,7 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     displayName: "Deploy Resources to AKS"
-    environment: ${{parameters.environments}}
+    environment: ${{parameters.environment}}
     strategy:
       runOnce:
         deploy:
@@ -54,9 +54,9 @@ jobs:
                   echo "Pull Helm chart from ACR"
                   helm pull oci://${{parameters.acrName}}.azurecr.io/${{parameters.helmRepoName}}/${{parameters.chartName}} --version ${{parameters.helmChartVersion}}
 
-                  echo "Updating image tag in ${{parameters.environments}}-values.yaml"
-                  sed -i "s/tag:.*/tag:  ${{parameters.imageTag}}/" ./${{parameters.helmChartPath}}/${{parameters.chartName}}/${{parameters.environments}}-values.yaml
-                  cat ./${{parameters.helmChartPath}}/${{parameters.chartName}}/${{parameters.environments}}-values.yaml
+                  echo "Updating image tag in ${{parameters.environment}}-values.yaml"
+                  sed -i "s/tag:.*/tag:  ${{parameters.imageTag}}/" ./${{parameters.helmChartPath}}/${{parameters.chartName}}/${{parameters.environment}}-values.yaml
+                  cat ./${{parameters.helmChartPath}}/${{parameters.chartName}}/${{parameters.environment}}-values.yaml
                   
             - script: |
                   echo "Workspace Directory: $(Pipeline.Workspace)"
@@ -74,7 +74,7 @@ jobs:
                 command: upgrade
                 chartType: FilePath
                 chartPath: './${{parameters.chartName}}-${{parameters.helmChartVersion}}.tgz'
-                valueFile: './${{parameters.helmChartPath}}/${{parameters.chartName}}/$(environments)-values.yaml'
+                valueFile: './${{parameters.helmChartPath}}/${{parameters.chartName}}/$(environment)-values.yaml'
                 releaseName: ${{parameters.chartName}}
                 install: true
                 waitForExecution: true
