@@ -36,40 +36,40 @@ stages:
 
   - stage: Dev_Deploy
     displayName: Deploy to AKS Dev
-    dependsOn: HelmPackagePush
-    variables:
-    - group: 'k8s-dev'
+    dependsOn: HelmPackagePush   
     jobs:
-      - template: appTemplates/deploy.yml
-        parameters:
-          chartName: $(chartName)
-          helmChartVersion: $(helmChartVersion) 
-          helmRepoName: $(helmRepoName)
-          acrName: $(acrName)
-          aksCluster: $(aksCluster)
-          aksResourceGroup: $(aksResourceGroup) 
-          serviceConnection: $(serviceConnection)
-          environment: $(environment)
-          namespace: $(namespace)
-          helmChartPath: $(helmChartPath)
-          imageTag: $(imageTag)
+    variables:
+    - group: 'k8s-dev'    
+    - template: appTemplates/deploy.yml
+      parameters:
+        chartName: $(chartName)
+        helmChartVersion: $(helmChartVersion) 
+        helmRepoName: $(helmRepoName)
+        acrName: $(acrName)
+        aksCluster: $(aksCluster)
+        aksResourceGroup: $(aksResourceGroup) 
+        serviceConnection: $(serviceConnection)
+        environment: $(environment)
+        namespace: $(namespace)
+        helmChartPath: $(helmChartPath)
+        imageTag: $(imageTag)
 
   - stage: Prod_Deploy
     displayName: Deploy to AKS Prod
-    dependsOn: Dev_Deploy
+    dependsOn: Dev_Deploy    
+    jobs:
     variables:
     - group: 'k8s-prod'
-    jobs:
-      - template: appTemplates/deploy.yml
-        parameters:
-          chartName: $(chartName)
-          helmChartVersion: $(helmChartVersion) 
-          helmRepoName: $(helmRepoName)
-          acrName: $(acrName)
-          aksCluster: $(aksCluster)
-          aksResourceGroup: $(aksResourceGroup) 
-          serviceConnection: $(serviceConnection)
-          environment: $(environment)
-          namespace: $(namespace)
-          helmChartPath: $(helmChartPath)
-          imageTag: $(imageTag)
+    - template: appTemplates/deploy.yml
+      parameters:
+        chartName: $(chartName)
+        helmChartVersion: $(helmChartVersion) 
+        helmRepoName: $(helmRepoName)
+        acrName: $(acrName)
+        aksCluster: $(aksCluster)
+        aksResourceGroup: $(aksResourceGroup) 
+        serviceConnection: $(serviceConnection)
+        environment: $(environment)
+        namespace: $(namespace)
+        helmChartPath: $(helmChartPath)
+        imageTag: $(imageTag)
