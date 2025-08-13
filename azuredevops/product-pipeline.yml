@@ -84,7 +84,7 @@ stages:
             aksCluster: $(aksCluster)
             aksResourceGroup: $(aksResourceGroup) 
             serviceConnection: $(serviceConnection)
-            environment: dev
+            environment: test
             namespace: $(namespace)
             helmChartPath: $(helmChartPath)
             imageTag: $(imageTag)
