@@ -54,9 +54,29 @@ stages:
             helmChartPath: $(helmChartPath)
             imageTag: $(imageTag)
 
-  - stage: Prod_Deploy
-    displayName: Deploy to AKS Dev
+  - stage: Test_Deploy
+    displayName: Deploy to AKS Test
     dependsOn: Dev_Deploy
+    variables:
+      - group: 'k8s-test'
+    jobs:
+      - template: appTemplates/deploy.yml
+        parameters:
+            chartName: $(chartName)
+            helmChartVersion: $(helmChartVersion) 
+            helmRepoName: $(helmRepoName)
+            acrName: $(acrName)
+            aksCluster: $(aksCluster)
+            aksResourceGroup: $(aksResourceGroup) 
+            serviceConnection: $(serviceConnection)
+            environment: dev
+            namespace: $(namespace)
+            helmChartPath: $(helmChartPath)
+            imageTag: $(imageTag)
+
+  - stage: Prod_Deploy
+    displayName: Deploy to AKS Prod
+    dependsOn: Test_Deploy
     variables:
       - group: 'k8s-prod'
     jobs:

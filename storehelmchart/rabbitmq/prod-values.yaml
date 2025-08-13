@@ -23,5 +23,5 @@ rabbitmq:
       requests:
         cpu: 10m
         memory: 128Mi
-  replicas: 2
+  replicas: 3
   type: ClusterIP

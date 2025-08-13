@@ -19,5 +19,5 @@ productService:
       requests:
         cpu: 1m
         memory: 1Mi
-  replicas: 2
+  replicas: 3
   type: ClusterIP
