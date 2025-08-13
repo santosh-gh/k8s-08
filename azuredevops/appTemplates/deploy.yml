@@ -27,7 +27,7 @@ jobs:
   - deployment: DeployToAKS
     pool:
       vmImage: 'ubuntu-latest'
-    displayName: "Deploy Resources for: ${{parameters.environment}} environment"
+    displayName: "Deploy Resources to AKS"
     environment: "${{parameters.environment}}"
     strategy:
       runOnce:
