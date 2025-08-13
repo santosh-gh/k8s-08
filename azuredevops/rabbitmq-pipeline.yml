@@ -49,7 +49,7 @@ stages:
             aksCluster: $(aksCluster)
             aksResourceGroup: $(aksResourceGroup) 
             serviceConnection: $(serviceConnection)
-            environments: dev
+            environment: dev
             namespace: $(namespace)
             helmChartPath: $(helmChartPath)
             imageTag: $(imageTag)
@@ -69,7 +69,7 @@ stages:
             aksCluster: $(aksCluster)
             aksResourceGroup: $(aksResourceGroup) 
             serviceConnection: $(serviceConnection)
-            environments: test
+            environment: test
             namespace: $(namespace)
             helmChartPath: $(helmChartPath)
             imageTag: $(imageTag)
@@ -89,7 +89,7 @@ stages:
             aksCluster: $(aksCluster)
             aksResourceGroup: $(aksResourceGroup) 
             serviceConnection: $(serviceConnection)
-            environments: prod
+            environment: prod
             namespace: $(namespace)
             helmChartPath: $(helmChartPath)
             imageTag: $(imageTag)
