@@ -37,7 +37,7 @@
            Store the helm chart in ACR
            Dynamically update the image tag in values.yaml
            Dynamically update the Chart version in Chart.yaml
-           Deploy into multiple environments (dev, test, prod)
+           Deploy into multiple environments (dev, test, prod) with approval gates
 
     GitHub: https://github.com/santosh-gh/k8s-07
     YouTube: https://www.youtube.com/watch?v=VAiR3sNavh0
@@ -176,6 +176,4 @@ Docker Build and Push
 
 # Clean the Azure resources
 
-    az group delete --name rg-onlinestore-dev-uksouth-001 --yes --no-wait 
-
-
+    az group delete --name rg-onlinestore-dev-uksouth-001 --yes --no-wait
