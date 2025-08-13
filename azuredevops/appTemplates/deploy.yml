@@ -21,6 +21,7 @@ parameters:
   type: string
 - name: "imageTag"
   type: string
+  default: 'latest'
 
 jobs:
   - deployment: DeployToAKS
