@@ -35,15 +35,11 @@ stages:
   - stage: Dev_Deploy
     displayName: Deploy to AKS Dev
     dependsOn: HelmPackagePush
-    jobs:
-    - job: Deploy
-      pool:
-        vmImage: 'ubuntu-latest'
-      variables:
+    variables:
       - group: 'k8s-dev'
-      steps:
-        - template: appTemplates/deploy.yml
-          parameters:
+    jobs:
+      - template: appTemplates/deploy.yml
+        parameters:
             chartName: $(chartName)
             helmChartVersion: $(helmChartVersion) 
             helmRepoName: $(helmRepoName)
@@ -53,19 +49,16 @@ stages:
             serviceConnection: $(serviceConnection)
             environment: $(environment)
             namespace: $(namespace)
+            helmChartPath: $(helmChartPath)
 
   - stage: Prod_Deploy
-    displayName: Deploy to AKS Prod
+    displayName: Deploy to AKS Dev
     dependsOn: Dev_Deploy
-    jobs:
-    - job: Deploy
-      pool:
-        vmImage: 'ubuntu-latest'
-      variables:
+    variables:
       - group: 'k8s-prod'
-      steps:
-        - template: appTemplates/deploy.yml
-          parameters:
+    jobs:
+      - template: appTemplates/deploy.yml
+        parameters:
             chartName: $(chartName)
             helmChartVersion: $(helmChartVersion) 
             helmRepoName: $(helmRepoName)
@@ -75,3 +68,4 @@ stages:
             serviceConnection: $(serviceConnection)
             environment: $(environment)
             namespace: $(namespace)
+            helmChartPath: $(helmChartPath)

@@ -3,4 +3,4 @@ orderService:
   nodeSelector:
     kubernetes.io/os: linux
   orderService:    
-  replicas: 2  
+  replicas: 3  
