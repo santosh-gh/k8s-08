@@ -38,7 +38,7 @@ stages:
     displayName: Deploy to AKS Dev
     dependsOn: HelmPackagePush
     variables:
-      - group: 'k8s-dev'
+    - group: 'k8s-dev'
     jobs:
       - template: appTemplates/deploy.yml
         parameters:
@@ -55,10 +55,10 @@ stages:
             imageTag: $(imageTag)
 
   - stage: Prod_Deploy
-    displayName: Deploy to AKS Dev
+    displayName: Deploy to AKS Prod
     dependsOn: Dev_Deploy
     variables:
-      - group: 'k8s-prod'
+    - group: 'k8s-prod'
     jobs:
       - template: appTemplates/deploy.yml
         parameters:
