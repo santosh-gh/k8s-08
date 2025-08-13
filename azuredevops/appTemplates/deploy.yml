@@ -74,7 +74,7 @@ jobs:
                 command: upgrade
                 chartType: FilePath
                 chartPath: './${{parameters.chartName}}-${{parameters.helmChartVersion}}.tgz'
-                valueFile: './${{parameters.helmChartPath}}/${{parameters.chartName}}/$(environment)-values.yaml'
+                valueFile: './${{parameters.helmChartPath}}/${{parameters.chartName}}/${{parameters.environment}}-values.yaml'
                 releaseName: ${{parameters.chartName}}
                 install: true
                 waitForExecution: true
