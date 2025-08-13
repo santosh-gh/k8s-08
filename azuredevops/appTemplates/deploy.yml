@@ -23,7 +23,6 @@ parameters:
   type: string
 
 jobs:
-  - job: Deploy
   - deployment: DeployToAKS
     pool:
       vmImage: 'ubuntu-latest'
