@@ -64,9 +64,10 @@ stages:
             aksCluster: $(aksCluster)
             aksResourceGroup: $(aksResourceGroup) 
             serviceConnection: $(serviceConnection)
-            environment: $(environment)
+            environment: dev
             namespace: $(namespace)
             helmChartPath: $(helmChartPath)
+            imageTag: $(imageTag)
 
   - stage: Prod_Deploy
     displayName: Deploy to AKS Dev
@@ -83,52 +84,7 @@ stages:
             aksCluster: $(aksCluster)
             aksResourceGroup: $(aksResourceGroup) 
             serviceConnection: $(serviceConnection)
-            environment: $(environment)
+            environment: prod
             namespace: $(namespace)
             helmChartPath: $(helmChartPath)
-
-  # - stage: Dev_Deploy
-  #   displayName: Deploy to AKS Dev
-  #   dependsOn: HelmPackagePush
-  #   jobs:
-  #   - job: Deploy
-  #     pool:
-  #       vmImage: 'ubuntu-latest'
-  #     variables:
-  #     - group: 'k8s-dev'
-  #     steps:
-  #       - template: appTemplates/deploy.yml
-  #         parameters:
-  #           chartName: $(chartName)
-  #           helmChartVersion: $(helmChartVersion) 
-  #           helmRepoName: $(helmRepoName)
-  #           acrName: $(acrName)
-  #           aksCluster: $(aksCluster)
-  #           aksResourceGroup: $(aksResourceGroup) 
-  #           serviceConnection: $(serviceConnection)
-  #           environment: $(environment)
-  #           namespace: $(namespace)
-  #           helmChartPath: $(helmChartPath)
-
-  # - stage: Prod_Deploy
-  #   displayName: Deploy to AKS Prod
-  #   dependsOn: Dev_Deploy
-  #   jobs:
-  #   - job: Deploy
-  #     pool:
-  #       vmImage: 'ubuntu-latest'
-  #     variables:
-  #     - group: 'k8s-prod'
-  #     steps:
-  #       - template: appTemplates/deploy.yml
-  #         parameters:
-  #           chartName: $(chartName)
-  #           helmChartVersion: $(helmChartVersion) 
-  #           helmRepoName: $(helmRepoName)
-  #           acrName: $(acrName)
-  #           aksCluster: $(aksCluster)
-  #           aksResourceGroup: $(aksResourceGroup) 
-  #           serviceConnection: $(serviceConnection)
-  #           environment: $(environment)
-  #           namespace: $(namespace)
-  #           helmChartPath: $(helmChartPath)
+            imageTag: $(imageTag)
