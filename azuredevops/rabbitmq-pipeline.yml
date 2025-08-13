@@ -50,6 +50,7 @@ stages:
             environment: $(environment)
             namespace: $(namespace)
             helmChartPath: $(helmChartPath)
+            imageTag: $(imageTag)
 
   - stage: Prod_Deploy
     displayName: Deploy to AKS Dev
@@ -69,3 +70,4 @@ stages:
             environment: $(environment)
             namespace: $(namespace)
             helmChartPath: $(helmChartPath)
+            imageTag: $(imageTag)

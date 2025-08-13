@@ -139,6 +139,9 @@
 
         alias k=kubectl
 
+        k create ns dev
+        k create ns prod
+
     # Short name for kubectl
 
     # Show all existing objects

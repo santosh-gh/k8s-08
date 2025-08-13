@@ -19,6 +19,8 @@ parameters:
   type: string
 - name: "helmChartPath"
   type: string
+- name: "imageTag"
+  type: string
 
 jobs:
   - job: Deploy
